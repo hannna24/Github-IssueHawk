@@ -17,6 +17,10 @@ async def predict_baseline():
                 "label": result["label"],
                 "confidence": result["confidence"]
             })
+            if len(predictions) % 25 == 0:
+                print(f"  classified {len(predictions)}/353...", flush=True)
+
+            
     
     EVAL_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = EVAL_RESULTS_DIR / "predictions.jsonl"
