@@ -20,6 +20,8 @@ def fetch_closed_issues(repo_name: str = TARGET_REPO, limit: int = MAX_ISSUES):
             'labels': [l.name for l in issue.labels],
             'comments': issue.comments,
         })
+        if len(raw_issues) % 50 == 0:
+            print(f"  fetched {len(raw_issues)}/{limit}...", flush=True)
         if len(raw_issues) >= limit:
             break
  
