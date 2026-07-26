@@ -1,0 +1,35 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Virtualenv
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Models / checkpoints (LoRA adapters, merged weights, GGUF)
+checkpoints/
+*.gguf
+*.safetensors
+
+# Data artifacts
+data/raw/
+data/processed/
+data/splits/
+eval/results/
+
+# Local vector store
+chroma/
+.chroma/
+
+# OS / editor
+.DS_Store
+Thumbs.db
