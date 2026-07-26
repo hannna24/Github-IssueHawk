@@ -1,4 +1,4 @@
-# IssueHawk
+# Github IssueHawk
 
 **Fine-tuned issue triage agent that learns from your repo's own labeled history. Runs locally via quantized GGUF + Ollama. Watches real traffic in shadow mode. Measures trust by agreement rate before acting.**
 
