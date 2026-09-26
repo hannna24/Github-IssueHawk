@@ -16,5 +16,5 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 TARGET_REPO = os.getenv("TARGET_REPO", "vercel/next.js")
 MAX_ISSUES = int(os.getenv("MAX_ISSUES", 4000))
-LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
-LABELS = ["bug", "feature-request", "documentation", "duplicate"]
+LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
+LABELS = ["bug", "feature-request", "documentation"]

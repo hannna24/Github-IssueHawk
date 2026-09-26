@@ -21,10 +21,12 @@ checkpoints/
 *.safetensors
 
 # Data artifacts
-data/raw/
-data/processed/
-data/splits/
+# NOTE: raw/processed/splits are intentionally committed so remote GPU
+# environments (e.g. Colab) can clone them for training.
 eval/results/
+
+# Old experiment backup (not needed for training)
+data/_backup_4class/
 
 # Local vector store
 chroma/
@@ -33,3 +35,7 @@ chroma/
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# Duplicate/junk files
+*copy*.py
+requirments.txt

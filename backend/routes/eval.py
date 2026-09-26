@@ -8,12 +8,12 @@ router = APIRouter()
 @router.get("/api/eval/report")
 async def get_eval_report():
     predictions = []
-    with open(EVAL_RESULTS_DIR / "predictions.jsonl") as f:
+    with open(EVAL_RESULTS_DIR / "predictions.jsonl", encoding="utf-8") as f:
         for line in f:
             predictions.append(json.loads(line))
     
     ground_truth = []
-    with open(SPLITS_DIR / "test.jsonl") as f:
+    with open(SPLITS_DIR / "test.jsonl", encoding="utf-8") as f:
         for line in f:
             issue = json.loads(line)
             ground_truth.append({
