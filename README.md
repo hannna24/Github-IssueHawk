@@ -34,9 +34,12 @@ Both models classify the same held-out test split (352 issues: 227 bug, 59 featu
 | Model | Accuracy | Macro-F1 | bug F1 | feature-request F1 | documentation F1 |
 |---|---|---|---|---|---|
 | Baseline: gpt-oss-120b (zero-shot, hosted) | 0.9602 | 0.9493 | 0.972 | 0.974 | 0.902 |
-| Fine-tuned: Qwen2.5-3B + LoRA (local) | 0.9517 | 0.9300 | 0.974 | 0.952 | 0.864 |
+| Fine-tuned: Qwen2.5-3B + LoRA (local, fp16, needs a GPU) | 0.9517 | 0.9300 | 0.974 | 0.952 | 0.864 |
+| Fine-tuned + quantized: Q4_K_M GGUF, served by Ollama on CPU | 0.9375 | 0.9123 | 0.965 | 0.915 | 0.857 |
 
 The fine-tuned model got 335 of 352 right against the baseline's 338. A three-issue difference on a test set this size is within noise, so the fair reading is that a 3B model fine-tuned on this repo's own history gets close to a 120B hosted model, without API calls, but did not beat it.
+
+Quantizing to Q4_K_M (Layer 3) shrinks the 6 GB fp16 model to 1.8 GB and lets it run on a laptop CPU with no GPU (about 8 seconds per issue). It cost 5 correct predictions out of 352 (330 vs. 335), mostly bugs predicted as feature requests.
 
 Where it falls short: documentation recall (0.773 vs. 0.833). Ten documentation issues were predicted as bug and five as feature-request; the baseline made 10 and 1 of the same mistakes.
 
