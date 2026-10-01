@@ -18,3 +18,11 @@ TARGET_REPO = os.getenv("TARGET_REPO", "vercel/next.js")
 MAX_ISSUES = int(os.getenv("MAX_ISSUES", 4000))
 LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
 LABELS = ["bug", "feature-request", "documentation"]
+
+# Layer 3: local serving, duplicate memory, routing thresholds
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "issuehawk")
+CHROMA_DIR = ROOT / "data" / "chroma"
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+DUPLICATE_THRESHOLD = float(os.getenv("DUPLICATE_THRESHOLD", 0.88))
+CONFIDENCE_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", 0.8))
