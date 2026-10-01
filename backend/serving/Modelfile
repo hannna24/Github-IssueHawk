@@ -1,0 +1,18 @@
+# Ollama model definition for the quantized IssueHawk classifier.
+#   ollama create issuehawk -f Modelfile
+# The system prompt and chat format must match training exactly
+# (services/prompts.py STUDENT_SYSTEM_PROMPT, Qwen ChatML).
+FROM ./issuehawk-Q4_K_M.gguf
+
+TEMPLATE """<|im_start|>system
+{{ .System }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"""
+
+SYSTEM """You are an issue triage expert for open-source repositories. Classify the issue into EXACTLY ONE label: bug, feature-request, documentation. Respond with ONLY JSON: {"label": "<label>"}."""
+
+PARAMETER temperature 0
+PARAMETER num_predict 24
+PARAMETER stop "<|im_end|>"
