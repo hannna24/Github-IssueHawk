@@ -5,7 +5,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from config import LABELS, EVAL_RESULTS_DIR
 
 
-def evaluate(predictions: list[dict], ground_truth: list[dict]) -> dict:
+def evaluate(predictions: list[dict], ground_truth: list[dict], save_as: str = 'latest.json') -> dict:
     """predictions: {'issue_number', 'label', 'status'}; ground_truth: {'issue_number', 'label'}
 
     Only rows with status == 'ok' are scored. Failures are counted and surfaced
@@ -68,7 +68,7 @@ def evaluate(predictions: list[dict], ground_truth: list[dict]) -> dict:
     }
 
     EVAL_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    with open(EVAL_RESULTS_DIR / 'latest.json', 'w', encoding='utf-8') as f:
+    with open(EVAL_RESULTS_DIR / save_as, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2)
 
     return result
